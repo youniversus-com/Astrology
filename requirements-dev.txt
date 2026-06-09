@@ -1,7 +1,7 @@
 -r requirements-test.txt
 -r requirements-api.txt
-ruff>=0.8.0
-pyright>=1.1.400
-mypy>=1.13.0
+ruff>=0.15.16
+pyright>=1.1.410
+mypy>=2.1.0
 types-setuptools
-sphinx>=7.0
+sphinx>=9.1.0
