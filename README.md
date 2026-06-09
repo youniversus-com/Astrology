@@ -2,7 +2,7 @@
 
 Desktop astrology application for **natal charts**, **transits**, **synastry**, **composites**, and **Swiss Ephemeris** calculations.
 
-Built with Python 3.12+, GTK 4, PyGObject, and [pysweph](https://pypi.org/project/pysweph/).
+Built with Python 3.12+, GTK 4, PyGObject, and [pysweph](https://pypi.org/project/pysweph/). Current release: **1.1.62**.
 
 [![Tests](https://github.com/YOUR_ORG/astrology/actions/workflows/tests.yml/badge.svg)](https://github.com/YOUR_ORG/astrology/actions/workflows/tests.yml)
 [![Documentation](https://readthedocs.org/projects/youniverse-astrology/badge/?version=latest)](https://youniverse-astrology.readthedocs.io/en/latest/?badge=latest)

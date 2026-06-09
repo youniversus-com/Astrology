@@ -1,3 +1,10 @@
+astrology (1.1.62-1) unstable; urgency=medium
+
+  * Automated GitHub Release publishing for Linux, macOS, and Windows packages.
+  * Debug logging redaction and release workflow fixes.
+
+ -- YoUniverse Astrology Team <astrology@youniverse.com>  Mon, 09 Jun 2026 12:00:00 +0000
+
 astrology (1.1.60-1) unstable; urgency=medium
 
   * Open-source publishing preparation: CI, community templates, docs.

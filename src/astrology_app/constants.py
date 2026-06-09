@@ -2,5 +2,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 """Application version string and debug flags exposed to the UI and packaging."""
 
-VERSION = '1.1.60'
+VERSION = '1.1.62'
 DEBUG = False
