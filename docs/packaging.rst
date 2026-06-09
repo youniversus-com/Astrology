@@ -42,8 +42,9 @@ Output: ``dist/packages/astrology-<version>-*.rpm``
 CI artifacts
 ------------
 
-GitHub Actions builds ``.deb`` packages on version tags (``v*``). Download artifacts
-from the workflow run or attach them to a GitHub Release.
+GitHub Actions builds Linux, macOS, and Windows packages on version tags (``v*``).
+The ``packages.yml`` workflow creates the GitHub Release and uploads all built
+artifacts to the release page automatically.
 
 Windows and macOS
 -----------------

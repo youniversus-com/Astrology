@@ -79,10 +79,11 @@ git tag -s v1.1.60 -m "Release 1.1.60"
 git push origin v1.1.60
 ```
 
-4. GitHub Actions: verify signature, tests, docs, `.deb`, `.rpm`, GitHub Release
-5. Attach `.deb` / `.rpm` from workflow artifacts to the Release if not automated
-6. Build and attach macOS `.app` / Windows zip from a machine on each platform (`make package-macos` / `make package-windows`; see `docs/packaging.rst`)
-7. Add screenshots to README (`docs/screenshots/`)
+4. GitHub Actions on tag push (automated):
+   - ``verify-release.yml`` — verify signed tag
+   - ``packages.yml`` — build Linux/macOS/Windows packages and attach them to the GitHub Release
+5. Confirm assets appear on the release page (``.deb``, ``.rpm``, macOS ``.tar.gz``, Windows ``.zip``)
+6. Add screenshots to README (``docs/screenshots/``) when the UI changed
 
 ## Ongoing
 

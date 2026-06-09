@@ -175,12 +175,19 @@ jobs:
             echo "Release ${VERSION}" > release-notes.md
           fi
 
-          shopt -s nullglob
-          files=(dist/packages/*)
+          mapfile -t files < <(
+            find dist/packages -type f \( \
+              -name '*.deb' -o -name '*.rpm' -o -name '*.tar.gz' -o -name '*.zip' \
+            \) | sort
+          )
           if ((${#files[@]} == 0)); then
-            echo "::error::No package files found in dist/packages/"
+            echo "::error::No package files found under dist/packages/"
+            find dist/packages -type f 2>/dev/null || true
             exit 1
           fi
+
+          echo "Package files to publish:"
+          printf '  - %s\n' "${files[@]}"
 
           if ! gh release view "$TAG" >/dev/null 2>&1; then
             echo "Release ${TAG} missing; creating it before upload..."
@@ -188,4 +195,13 @@ jobs:
           fi
 
           gh release upload "$TAG" "${files[@]}" --clobber
-          echo "Uploaded ${#files[@]} file(s) to release ${TAG}"
+
+          echo "Release ${TAG} assets:"
+          gh release view "$TAG" --json assets --jq '.assets[] | "  - \(.name) (\(.size) bytes)"'
+
+          if [[ $(gh release view "$TAG" --json assets --jq '.assets | length') -lt ${#files[@]} ]]; then
+            echo "::error::Expected at least ${#files[@]} release assets, but fewer were attached."
+            exit 1
+          fi
+
+          echo "Uploaded ${#files[@]} package(s) to https://github.com/${GITHUB_REPOSITORY}/releases/tag/${TAG}"
