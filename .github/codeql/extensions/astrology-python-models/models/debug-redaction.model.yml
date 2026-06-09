@@ -1,0 +1,6 @@
+extensions:
+  - addsTo:
+      pack: codeql/python-all
+      extensible: barrierModel
+    data:
+      - ["astrology_app.debug", "Member[_redact_sensitive].ReturnValue", "clear-text-logging-sensitive-data"]

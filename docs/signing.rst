@@ -41,8 +41,12 @@ Verify locally:
 CI verification
 ---------------
 
-The workflow ``.github/workflows/verify-release.yml`` fails if a pushed ``v*`` tag is
-**not** signed.
+The workflow ``.github/workflows/verify-release.yml`` imports the trusted release
+signing key from ``.github/gpg/release-signing.asc`` and fails if a pushed ``v*`` tag
+is **not** signed with that key.
+
+When the release signing key changes, export the new public key and replace
+``.github/gpg/release-signing.asc`` before signing the next release tag.
 
 GitHub branch protection (recommended)
 --------------------------------------
