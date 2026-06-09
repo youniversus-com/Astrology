@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE = 1
+export PIP_BREAK_SYSTEM_PACKAGES = 1
+
+%:
+	dh $@ --with python3 --buildsystem=none
+
+override_dh_auto_clean:
+	rm -rf build astrology.egg-info
+	find . -type d -name __pycache__ -print0 | xargs -0 rm -rf 2>/dev/null || true
+
+override_dh_auto_build:
+	:
+
+override_dh_auto_install:
+	python3 setup.py install --root=debian/astrology --prefix=/usr --install-layout=deb
+	pip3 install --no-cache-dir --upgrade \
+		--target=debian/astrology/usr/lib/python3/dist-packages \
+		'pysweph==2.10.3.6'
+
+override_dh_python3:
+	dh_python3

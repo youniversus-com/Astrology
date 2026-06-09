@@ -1,0 +1,21 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/src",
+        "${workspaceFolder}/tests"
+    ],
+    "python.analysis.stubPath": "${workspaceFolder}/typings",
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "tests/unit"
+    ],
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "[python]": {
+        "editor.rulers": [120]
+    },
+    "files.associations": {
+        "*.rst": "restructuredtext"
+    }
+}

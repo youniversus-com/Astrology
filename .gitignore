@@ -1,0 +1,81 @@
+# Python
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+.installed.cfg
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+
+# Build & packaging
+build/
+dist/
+*.tar.gz
+*.whl
+build/rpm/
+build/macos-venv/
+build/windows-venv/
+build/pyinstaller/
+src/build/
+src/*.egg-info/
+src/debian/files
+src/debian/debhelper-build-stamp
+src/debian/.debhelper/
+src/debian/astrology/
+src/debian/*.debhelper
+src/debian/*.substvars
+src/debian/*.deb
+src/debian/*.changes
+src/debian/*.buildinfo
+src/debian/*.upload
+astrology_*.deb
+astrology_*.changes
+astrology_*.buildinfo
+openastro*.deb
+openastro.org_*.deb
+*.deb
+!packaging/**
+
+# Vendor ephemeris mirror (optional; scripts/update_ephemeris_de441.sh)
+swisseph/ephe/
+
+# Documentation
+docs/_build/
+docs/_static/.doctrees/
+
+# Ephemeris vendor cache (optional local mirror; .se1 in src/swisseph is tracked)
+# swisseph/ephe/*.se1
+
+# User / local config
+.config/
+*.local
+
+# IDE & OS
+.vscode/*
+!.vscode/settings.json
+*.code-workspace
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Scratch / accidental outputs
+=*
+*.log
+/tmp/
+
+# Local code-review / audit reports (agent-generated)
+todo/

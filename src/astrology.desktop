@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Astrology
+GenericName=Astrology
+Categories=Graphics;2DGraphics;GTK;
+Exec=astrology
+Icon=astrology
+StartupNotify=true
+Terminal=false

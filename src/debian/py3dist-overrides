@@ -1,0 +1,2 @@
+# pysweph is installed via pip during package build (not a Debian package).
+swisseph private

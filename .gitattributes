@@ -1,0 +1,41 @@
+# Normalize line endings across platforms
+* text=auto eol=lf
+
+# Shell scripts must stay executable-friendly
+*.sh text eol=lf
+
+# Python
+*.py text diff=python
+
+# Documentation
+*.md text diff=markdown
+*.rst text
+
+# Config / CI
+*.{yml,yaml,toml,ini,cfg,json} text
+.editorconfig text
+.gitignore text
+.gitattributes text
+
+# Debian packaging
+*.deb binary
+*.rpm binary
+*.whl binary
+*.tar.gz binary
+*.zip binary
+
+# Ephemeris and bundled data (large binaries — exclude from language stats)
+*.se1 binary linguist-vendored
+*.cat binary linguist-vendored
+src/data/geonames.sql linguist-vendored
+src/data/famous.sql linguist-vendored
+
+# Compiled translations
+*.mo binary
+
+# Images
+*.{png,jpg,jpeg,gif,webp,ico,svg} binary
+
+# Generated / build output (should not be committed; linguist hint if present)
+docs/_build/** linguist-generated
+.venv/** linguist-vendored

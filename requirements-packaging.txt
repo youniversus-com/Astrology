@@ -1,0 +1,2 @@
+# Optional tools for Windows/macOS PyInstaller bundles (install on the target OS).
+pyinstaller>=6.0

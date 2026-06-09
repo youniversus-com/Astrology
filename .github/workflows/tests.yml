@@ -1,0 +1,158 @@
+name: Release tests
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+env:
+  ASTROLOGY_TEST: '1'
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install lint tools
+        run: pip install ruff
+      - name: Ruff
+        run: ruff check tests scripts
+
+  test:
+    name: Test (${{ matrix.label }})
+    needs: lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            label: Linux full
+            suite: linux-full
+          - os: macos-latest
+            label: macOS smoke
+            suite: macos-smoke
+          - os: windows-latest
+            label: Windows smoke
+            suite: windows-smoke
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Linux dependencies
+        if: matrix.suite == 'linux-full'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            python3 python3-dev python3-venv python3-pip \
+            python3-gi python3-gi-cairo \
+            gir1.2-gtk-4.0 gir1.2-rsvg-2.0 \
+            librsvg2-bin imagemagick xvfb
+
+      - name: Install macOS dependencies
+        if: matrix.suite == 'macos-smoke'
+        run: |
+          brew list python@3.12 &>/dev/null || brew install python@3.12
+          brew list gtk4 &>/dev/null || brew install gtk4
+          brew list pygobject3 &>/dev/null || brew install pygobject3
+          brew list librsvg &>/dev/null || brew install librsvg
+          brew list gobject-introspection &>/dev/null || brew install gobject-introspection
+          brew list imagemagick &>/dev/null || brew install imagemagick
+
+      - name: Install MSYS2 dependencies
+        if: matrix.suite == 'windows-smoke'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-python
+            mingw-w64-ucrt-x86_64-python-pip
+            mingw-w64-ucrt-x86_64-python-setuptools
+            mingw-w64-ucrt-x86_64-python-build
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-gtk4
+            mingw-w64-ucrt-x86_64-python-gobject
+            mingw-w64-ucrt-x86_64-python-cairo
+            mingw-w64-ucrt-x86_64-pango
+            mingw-w64-ucrt-x86_64-librsvg
+            mingw-w64-ucrt-x86_64-gettext
+            mingw-w64-ucrt-x86_64-python-fastapi
+
+      - name: Install project (Linux)
+        if: matrix.suite == 'linux-full'
+        env:
+          GDK_BACKEND: x11
+        run: ./install.sh
+
+      - name: Install project (macOS)
+        if: matrix.suite == 'macos-smoke'
+        run: |
+          PYTHON="$(brew --prefix python@3.12)/bin/python3.12"
+          BREW_PREFIX="$(brew --prefix)"
+          export GI_TYPELIB_PATH="${BREW_PREFIX}/lib/girepository-1.0:${GI_TYPELIB_PATH:-}"
+          export DYLD_LIBRARY_PATH="${BREW_PREFIX}/lib:${DYLD_LIBRARY_PATH:-}"
+          export PKG_CONFIG_PATH="${BREW_PREFIX}/lib/pkgconfig:${BREW_PREFIX}/share/pkgconfig:${PKG_CONFIG_PATH:-}"
+          "$PYTHON" -m venv --system-site-packages .venv
+          # shellcheck source=/dev/null
+          source .venv/bin/activate
+          python -m pip install -U pip setuptools wheel
+          python -m pip install -r requirements.txt
+          python -m pip install 'pysweph==2.10.3.6'
+          python -m pip install PyGObject
+          bash scripts/update_ephemeris_de441.sh
+          python -m pip install --force-reinstall --no-deps ./src
+          bash scripts/install-test-deps.sh
+          python -c "from gi import require_version; require_version('Gtk', '4.0'); print('PyGObject OK')"
+
+      - name: Install project (Windows)
+        if: matrix.suite == 'windows-smoke'
+        shell: msys2 {0}
+        run: |
+          export GI_TYPELIB_PATH="/ucrt64/lib/girepository-1.0:${GI_TYPELIB_PATH:-}"
+          export PATH="/ucrt64/bin:$PATH"
+          python -m venv --system-site-packages .venv
+          # shellcheck source=/dev/null
+          source .venv/bin/activate
+          python -m pip install -U pip setuptools wheel
+          python -m pip install -r requirements.txt
+          bash scripts/install-pysweph.sh
+          bash scripts/update_ephemeris_de441.sh
+          python -m pip install --force-reinstall --no-deps ./src
+          bash scripts/install-test-deps.sh
+
+      - name: Full test suite (Linux)
+        if: matrix.suite == 'linux-full'
+        env:
+          GDK_BACKEND: x11
+        run: make test-ci
+
+      - name: Unit and release smoke (macOS)
+        if: matrix.suite == 'macos-smoke'
+        run: |
+          BREW_PREFIX="$(brew --prefix)"
+          export GI_TYPELIB_PATH="${BREW_PREFIX}/lib/girepository-1.0:${GI_TYPELIB_PATH:-}"
+          export DYLD_LIBRARY_PATH="${BREW_PREFIX}/lib:${DYLD_LIBRARY_PATH:-}"
+          export PYTHONPATH="${BREW_PREFIX}/lib/python3.12/site-packages${PYTHONPATH:+:${PYTHONPATH}}"
+          make test-unit
+          make test-release
+
+      - name: Unit tests (Windows)
+        if: matrix.suite == 'windows-smoke'
+        shell: msys2 {0}
+        run: |
+          export GI_TYPELIB_PATH="/ucrt64/lib/girepository-1.0:${GI_TYPELIB_PATH:-}"
+          export PATH="/ucrt64/bin:$PATH"
+          bash scripts/run_unit_tests.sh
+          bash scripts/run_release_tests.sh

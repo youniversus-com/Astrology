@@ -1,0 +1,18 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{py,sh,yml,yaml,toml,md,rst,spec}]
+indent_style = space
+indent_size = 4
+
+[Makefile]
+indent_style = tab
+
+[*.py]
+# Legacy modules under src use tabs; do not reformat wholesale yet.
+max_line_length = 120

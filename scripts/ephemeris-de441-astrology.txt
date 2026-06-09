@@ -1,0 +1,9 @@
+# Swiss Ephemeris planet files (JPL DE441, rebuilt Apr 2026).
+# Covers 1200–2400 CE: epochs 12 (1200–1800) and 18 (1800–2400).
+# Source: https://github.com/aloistr/swisseph/tree/master/ephe
+sepl_12.se1
+semo_12.se1
+seas_12.se1
+sepl_18.se1
+semo_18.se1
+seas_18.se1

@@ -1,0 +1,2 @@
+# Python packages installed into the project venv (see install.sh).
+# GTK 4 / PyGObject come from the system via venv --system-site-packages.

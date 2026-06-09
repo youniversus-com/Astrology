@@ -1,0 +1,46 @@
+{
+  "yogas": [
+    {
+      "id": "raja_kendra_trikona",
+      "name": "Kendra-Trikona Raja Yoga",
+      "description": "Two or more kendra lords placed in kendra houses",
+      "strength": 0.75,
+      "conditions": [{"type": "kendra_lord_in_kendra"}]
+    },
+    {
+      "id": "budha_aditya",
+      "name": "Budha Aditya Yoga",
+      "description": "Mercury with Sun in same sign",
+      "strength": 0.55,
+      "conditions": [{"type": "planet_same_sign_as", "planet": 2, "other": 0}]
+    },
+    {
+      "id": "chandra_mangala",
+      "name": "Chandra-Mangala Yoga",
+      "description": "Moon and Mars in same sign",
+      "strength": 0.5,
+      "conditions": [{"type": "planet_same_sign_as", "planet": 1, "other": 4}]
+    },
+    {
+      "id": "guru_mangala",
+      "name": "Guru-Mangala Yoga",
+      "description": "Jupiter and Mars in same sign",
+      "strength": 0.45,
+      "conditions": [{"type": "planet_same_sign_as", "planet": 5, "other": 4}]
+    },
+    {
+      "id": "shukra_guru",
+      "name": "Shukra-Guru Yoga",
+      "description": "Venus and Jupiter in same sign",
+      "strength": 0.5,
+      "conditions": [{"type": "planet_same_sign_as", "planet": 3, "other": 5}]
+    },
+    {
+      "id": "lagna_lord_kendra",
+      "name": "Lagna Lord in Kendra",
+      "description": "Ruler of ascendant sign in a kendra house",
+      "strength": 0.6,
+      "conditions": [{"type": "lagna_lord_in_house", "house": 1}]
+    }
+  ]
+}

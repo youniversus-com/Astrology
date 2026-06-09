@@ -1,0 +1,29 @@
+title: " "
+labels: ["Q&A"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ask questions about installation, chart calculation, or development.
+        For bugs, please use an [issue](https://github.com/YOUR_ORG/astrology/issues/new?template=bug_report.yml) instead.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Installation / packaging
+        - Using the application
+        - Chart calculation / ephemeris
+        - Development / contributing
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: Include OS, version, and steps tried where relevant.
+    validations:
+      required: true

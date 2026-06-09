@@ -1,0 +1,21 @@
+title: " "
+labels: ["Ideas"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggest features or improvements. For concrete implementation proposals,
+        consider opening a [feature request issue](https://github.com/YOUR_ORG/astrology/issues/new?template=feature_request.yml) instead.
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: What problem would this solve? Who benefits?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

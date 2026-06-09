@@ -1,0 +1,156 @@
+name: Distribution packages
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  deb:
+    name: Build .deb
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential debhelper dh-python dpkg-dev \
+            python3-all python3-dev python3-pip python3-setuptools \
+            gir1.2-gtk-4.0 gir1.2-rsvg-2.0 \
+            python3-gi python3-gi-cairo python3-cairo \
+            imagemagick librsvg2-bin curl
+
+      - name: Build Debian package
+        run: |
+          export ASTROLOGY_UPDATE_EPHE=1
+          bash scripts/build-deb.sh
+
+      - name: Upload .deb artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: astrology-deb
+          path: dist/packages/*.deb
+
+  rpm:
+    name: Build .rpm
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install build dependencies
+        run: |
+          dnf install -y rpm-build gcc python3 python3-devel python3-pip python3-setuptools \
+            curl tar gzip gtk4 librsvg2-tools ImageMagick
+
+      - name: Build RPM
+        run: |
+          export ASTROLOGY_UPDATE_EPHE=1
+          bash scripts/build-rpm.sh
+
+      - name: Upload .rpm artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: astrology-rpm
+          path: dist/packages/*.rpm
+
+  macos:
+    name: Build macOS .app
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build macOS bundle
+        run: |
+          export ASTROLOGY_UPDATE_EPHE=1
+          bash scripts/build-macos.sh
+
+      - name: Upload macOS artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: astrology-macos
+          path: dist/packages/*-macos.app.tar.gz
+
+  windows:
+    name: Build Windows zip
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-python
+            mingw-w64-ucrt-x86_64-python-pip
+            mingw-w64-ucrt-x86_64-python-setuptools
+            mingw-w64-ucrt-x86_64-python-build
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-gtk4
+            mingw-w64-ucrt-x86_64-python-gobject
+            mingw-w64-ucrt-x86_64-python-cairo
+            mingw-w64-ucrt-x86_64-pango
+            mingw-w64-ucrt-x86_64-librsvg
+            mingw-w64-ucrt-x86_64-gettext
+            mingw-w64-ucrt-x86_64-tools
+            zip
+
+      - name: Build Windows bundle
+        run: |
+          export ASTROLOGY_UPDATE_EPHE=1
+          bash scripts/build-windows.sh
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: astrology-windows
+          path: dist/packages/*-windows-ucrt64.zip
+
+  publish:
+    name: Attach packages to GitHub Release
+    runs-on: ubuntu-latest
+    needs: [deb, rpm, macos, windows]
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    steps:
+      - name: Download package artifacts
+        uses: actions/download-artifact@v8
+        with:
+          pattern: astrology-*
+          merge-multiple: true
+          path: dist/packages
+
+      - name: Wait for release workflow, then upload assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          shopt -s nullglob
+          files=(dist/packages/*)
+          if ((${#files[@]} == 0)); then
+            echo "::error::No package files found in dist/packages/"
+            exit 1
+          fi
+          for attempt in $(seq 1 36); do
+            if gh release view "$TAG" >/dev/null 2>&1; then
+              gh release upload "$TAG" "${files[@]}" --clobber
+              echo "Uploaded ${#files[@]} file(s) to release $TAG"
+              exit 0
+            fi
+            echo "Waiting for GitHub Release $TAG (attempt $attempt/36)..."
+            sleep 10
+          done
+          echo "::warning::Release $TAG not found after 6 minutes; download artifacts from the workflow run instead."
+          exit 0

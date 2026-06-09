@@ -1,0 +1,14 @@
+title: " "
+labels: ["General"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        General conversation about YoUniverse Astrology — community, roadmap, or feedback.
+
+  - type: textarea
+    id: topic
+    attributes:
+      label: Topic
+    validations:
+      required: true

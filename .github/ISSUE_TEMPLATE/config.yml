@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/YOUR_ORG/astrology/tree/main/docs
+    about: User and developer guides
+  - name: Security issue
+    url: https://github.com/YOUR_ORG/astrology/blob/main/SECURITY.md
+    about: Report a vulnerability privately (do not use public issues)

@@ -1,0 +1,37 @@
+name: GitHub Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Read version
+        id: ver
+        run: echo "version=$(tr -d '[:space:]' < src/VERSION)" >> "$GITHUB_OUTPUT"
+
+      - name: Build changelog excerpt
+        id: notes
+        run: |
+          if grep -q "## \[${{ steps.ver.outputs.version }}\]" CHANGELOG.md; then
+            awk '/^## \[/{ if (p) exit; if ($0 ~ /\['"${{ steps.ver.outputs.version }}"'\]/) p=1 } p' CHANGELOG.md > release-notes.md
+          else
+            echo "Release ${{ steps.ver.outputs.version }}" > release-notes.md
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          name: v${{ steps.ver.outputs.version }}
+          body_path: release-notes.md
+          draft: false
+          prerelease: false
+          generate_release_notes: true

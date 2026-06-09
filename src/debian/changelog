@@ -1,0 +1,14 @@
+astrology (1.1.60-1) unstable; urgency=medium
+
+  * Open-source publishing preparation: CI, community templates, docs.
+  * Version and changelog aligned for first public GitHub release.
+
+ -- YoUniverse Astrology Team <astrology@youniverse.com>  Mon, 08 Jun 2026 12:00:00 +0000
+
+astrology (1.1.59-1) unstable; urgency=medium
+
+  * GTK 4 stack with PyGObject (replaces GTK 3).
+  * Swiss Ephemeris via PyPI pysweph 2.10.3.6 (bundled in package at build time).
+  * Application data and ephemeris files ship in the main binary package.
+
+ -- YoUniverse Astrology Team <astrology@youniverse.com>  Mon, 01 Jun 2026 12:00:00 +0000

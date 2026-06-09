@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest>=8.0
+pytest-timeout>=2.3
+hypothesis>=6.0
+pytest-benchmark>=4.0

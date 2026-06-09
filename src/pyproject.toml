@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "astrology"
+dynamic = ["version"]
+description = "Desktop astrology application — natal charts, transits, and synastry (GTK 4)"
+readme = "README"
+requires-python = ">=3.12"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "YoUniverse Astrology contributors" }]
+keywords = ["astrology", "natal-chart", "swiss-ephemeris", "gtk4"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Astronomy",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/YOUR_ORG/astrology"
+Repository = "https://github.com/YOUR_ORG/astrology"
+Issues = "https://github.com/YOUR_ORG/astrology/issues"
+Changelog = "https://github.com/YOUR_ORG/astrology/blob/main/CHANGELOG.md"
+
+[project.scripts]
+astrology = "run_astrology:main"
+astrology-api = "astrology_api.main:main"
+
+[project.optional-dependencies]
+api = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "pydantic>=2.10.0",
+]
+
+[tool.setuptools.dynamic]
+version = { file = "VERSION" }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["astrologymod*", "astrology_app*", "astrology_api*"]
+
+[tool.setuptools.package-data]
+astrologymod = ["py.typed"]
+astrology_app = ["py.typed"]
+astrology_api = ["py.typed"]

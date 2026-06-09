@@ -1,0 +1,941 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-11 11:36+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-12-24 18:48+0000\n"
+"X-Generator: Launchpad (build 18521)\n"
+"Generated-By: pygettext.py 1.5\n"
+
+#: astrology/current/astrology:385
+msgid "biquintile"
+msgstr ""
+
+#: astrology/current/astrology:385
+msgid "conjunction"
+msgstr ""
+
+#: astrology/current/astrology:385
+msgid "opposition"
+msgstr ""
+
+#: astrology/current/astrology:385
+msgid "quincunx"
+msgstr ""
+
+#: astrology/current/astrology:385
+msgid "quintile"
+msgstr ""
+
+#: astrology/current/astrology:385
+msgid "semi-sextile"
+msgstr ""
+
+#: astrology/current/astrology:385
+msgid "semi-square"
+msgstr ""
+
+#: astrology/current/astrology:385
+msgid "sesquiquadrate"
+msgstr ""
+
+#: astrology/current/astrology:385
+msgid "sextile"
+msgstr ""
+
+#: astrology/current/astrology:385
+msgid "square"
+msgstr ""
+
+#: astrology/current/astrology:385
+msgid "trine"
+msgstr ""
+
+#: astrology/current/astrology:507
+msgid "Cusp"
+msgstr ""
+
+#: astrology/current/astrology:508 astrology/current/astrology:4548
+#: astrology/current/astrology:5492 astrology/current/astrology:5630
+#: astrology/current/astrology:5995 astrology/current/astrology:5998
+msgid "Longitude"
+msgstr ""
+
+#: astrology/current/astrology:509 astrology/current/astrology:4544
+#: astrology/current/astrology:5492 astrology/current/astrology:5629
+#: astrology/current/astrology:5994 astrology/current/astrology:5998
+msgid "Latitude"
+msgstr ""
+
+#: astrology/current/astrology:510
+msgid "North"
+msgstr ""
+
+#: astrology/current/astrology:511
+msgid "East"
+msgstr ""
+
+#: astrology/current/astrology:512
+msgid "South"
+msgstr ""
+
+#: astrology/current/astrology:513
+msgid "West"
+msgstr ""
+
+#: astrology/current/astrology:514
+msgid "Apparent Geocentric"
+msgstr ""
+
+#: astrology/current/astrology:515
+msgid "True Geocentric"
+msgstr ""
+
+#: astrology/current/astrology:516
+msgid "Topocentric"
+msgstr ""
+
+#: astrology/current/astrology:517
+msgid "Heliocentric"
+msgstr ""
+
+#: astrology/current/astrology:518
+msgid "Fire"
+msgstr ""
+
+#: astrology/current/astrology:519
+msgid "Earth (element)"
+msgstr ""
+
+#: astrology/current/astrology:520
+msgid "Air"
+msgstr ""
+
+#: astrology/current/astrology:521
+msgid "Water"
+msgstr ""
+
+#: astrology/current/astrology:522
+msgid "Radix"
+msgstr ""
+
+#: astrology/current/astrology:523
+msgid "Transit"
+msgstr ""
+
+#: astrology/current/astrology:524
+msgid "Synastry"
+msgstr ""
+
+#: astrology/current/astrology:525
+msgid "Composite"
+msgstr ""
+
+#: astrology/current/astrology:526
+msgid "Combine"
+msgstr ""
+
+#: astrology/current/astrology:527
+msgid "Solar"
+msgstr ""
+
+#: astrology/current/astrology:528 astrology/current/astrology:2813
+msgid "Secondary Progressions"
+msgstr ""
+
+#: astrology/current/astrology:595
+msgid "Jupiter"
+msgstr ""
+
+#: astrology/current/astrology:595
+msgid "Mars"
+msgstr ""
+
+#: astrology/current/astrology:595
+msgid "Mercury"
+msgstr ""
+
+#: astrology/current/astrology:595
+msgid "Moon"
+msgstr ""
+
+#: astrology/current/astrology:595
+msgid "Saturn"
+msgstr ""
+
+#: astrology/current/astrology:595
+msgid "Sun"
+msgstr ""
+
+#: astrology/current/astrology:595
+msgid "Venus"
+msgstr ""
+
+#: astrology/current/astrology:596
+msgid "Lilith"
+msgstr ""
+
+#: astrology/current/astrology:596
+msgid "Neptune"
+msgstr ""
+
+#: astrology/current/astrology:596
+msgid "North Node"
+msgstr ""
+
+#: astrology/current/astrology:596
+msgid "Osc. Lilith"
+msgstr ""
+
+#: astrology/current/astrology:596
+msgid "Pluto"
+msgstr ""
+
+#: astrology/current/astrology:596
+msgid "Uranus"
+msgstr ""
+
+#: astrology/current/astrology:597
+msgid "Ceres"
+msgstr ""
+
+#: astrology/current/astrology:597
+msgid "Chiron"
+msgstr ""
+
+#: astrology/current/astrology:597
+msgid "Earth"
+msgstr ""
+
+#: astrology/current/astrology:597
+msgid "Juno"
+msgstr ""
+
+#: astrology/current/astrology:597
+msgid "Pallas"
+msgstr ""
+
+#: astrology/current/astrology:597
+msgid "Pholus"
+msgstr ""
+
+#: astrology/current/astrology:597
+msgid "Vesta"
+msgstr ""
+
+#: astrology/current/astrology:598
+msgid "Asc"
+msgstr ""
+
+#: astrology/current/astrology:598
+msgid "Day Pars"
+msgstr ""
+
+#: astrology/current/astrology:598
+msgid "Dsc"
+msgstr ""
+
+#: astrology/current/astrology:598
+msgid "Ic"
+msgstr ""
+
+#: astrology/current/astrology:598
+msgid "Mc"
+msgstr ""
+
+#: astrology/current/astrology:599
+msgid "Marriage Pars"
+msgstr ""
+
+#: astrology/current/astrology:599
+msgid "Night Pars"
+msgstr ""
+
+#: astrology/current/astrology:599
+msgid "South Node"
+msgstr ""
+
+#: astrology/current/astrology:1163 astrology/current/astrology:4703
+#: astrology/current/astrology:4714
+msgid "Here and Now"
+msgstr ""
+
+#: astrology/current/astrology:1501 astrology/current/astrology:4380
+msgid "Fagan Bradley"
+msgstr ""
+
+#: astrology/current/astrology:1502 astrology/current/astrology:4381
+msgid "Lahiri"
+msgstr ""
+
+#: astrology/current/astrology:1503 astrology/current/astrology:4382
+msgid "Deluce"
+msgstr ""
+
+#: astrology/current/astrology:1504 astrology/current/astrology:4383
+msgid "Ramanb"
+msgstr ""
+
+#: astrology/current/astrology:1505 astrology/current/astrology:4384
+msgid "Ushashashi"
+msgstr ""
+
+#: astrology/current/astrology:1506 astrology/current/astrology:4385
+msgid "Krishnamurti"
+msgstr ""
+
+#: astrology/current/astrology:1507 astrology/current/astrology:4386
+msgid "Djwhal Khul"
+msgstr ""
+
+#: astrology/current/astrology:1508 astrology/current/astrology:4387
+msgid "Yukteshwar"
+msgstr ""
+
+#: astrology/current/astrology:1509 astrology/current/astrology:4388
+msgid "Jn Bhasin"
+msgstr ""
+
+#: astrology/current/astrology:1510 astrology/current/astrology:4389
+msgid "Babyl Kugler 1"
+msgstr ""
+
+#: astrology/current/astrology:1511 astrology/current/astrology:4390
+msgid "Babyl Kugler 2"
+msgstr ""
+
+#: astrology/current/astrology:1512 astrology/current/astrology:4391
+msgid "Babyl Kugler 3"
+msgstr ""
+
+#: astrology/current/astrology:1513 astrology/current/astrology:4392
+msgid "Babyl Huber"
+msgstr ""
+
+#: astrology/current/astrology:1514 astrology/current/astrology:4393
+msgid "Babyl Etpsc"
+msgstr ""
+
+#: astrology/current/astrology:1515 astrology/current/astrology:4394
+msgid "Aldebaran 15Tau"
+msgstr ""
+
+#: astrology/current/astrology:1516 astrology/current/astrology:4395
+msgid "Hipparchos"
+msgstr ""
+
+#: astrology/current/astrology:1517 astrology/current/astrology:4396
+msgid "Sassanian"
+msgstr ""
+
+#: astrology/current/astrology:1518 astrology/current/astrology:4397
+msgid "J2000"
+msgstr ""
+
+#: astrology/current/astrology:1519 astrology/current/astrology:4398
+msgid "J1900"
+msgstr ""
+
+#: astrology/current/astrology:1520 astrology/current/astrology:4399
+msgid "B1950"
+msgstr ""
+
+#: astrology/current/astrology:1524 astrology/current/astrology:4356
+msgid "Sidereal"
+msgstr ""
+
+#: astrology/current/astrology:1527 astrology/current/astrology:4355
+msgid "Tropical"
+msgstr ""
+
+#: astrology/current/astrology:2302
+msgid "Yot"
+msgstr ""
+
+#: astrology/current/astrology:2372
+msgid "Planets in Transit"
+msgstr ""
+
+#: astrology/current/astrology:2777
+msgid "Chart"
+msgstr ""
+
+#: astrology/current/astrology:2778
+msgid "Quit!"
+msgstr ""
+
+#: astrology/current/astrology:2779
+msgid "History"
+msgstr ""
+
+#: astrology/current/astrology:2780 astrology/current/astrology:5576
+msgid "New Chart"
+msgstr ""
+
+#: astrology/current/astrology:2781
+msgid "Open Chart"
+msgstr ""
+
+#: astrology/current/astrology:2782
+msgid "Save Chart"
+msgstr ""
+
+#: astrology/current/astrology:2783
+msgid "Save as"
+msgstr ""
+
+#: astrology/current/astrology:2784
+msgid "PNG Image"
+msgstr ""
+
+#: astrology/current/astrology:2785
+msgid "SVG Image"
+msgstr ""
+
+#: astrology/current/astrology:2786
+msgid "JPG Image"
+msgstr ""
+
+#: astrology/current/astrology:2787
+msgid "Import"
+msgstr ""
+
+#: astrology/current/astrology:2788
+msgid "Oroboros (*.xml)"
+msgstr ""
+
+#: astrology/current/astrology:2789
+msgid "Astrolog (*.dat)"
+msgstr ""
+
+#: astrology/current/astrology:2790
+msgid "Skylendar (*.skif)"
+msgstr ""
+
+#: astrology/current/astrology:2791
+msgid "Zet8 Dbase (*.zbs)"
+msgstr ""
+
+#: astrology/current/astrology:2792 astrology/current/astrology:3530
+#: astrology/current/astrology:3706
+msgid "Print"
+msgstr ""
+
+#: astrology/current/astrology:2793
+msgid "Event"
+msgstr ""
+
+#: astrology/current/astrology:2794
+msgid "Edit Event"
+msgstr ""
+
+#: astrology/current/astrology:2795
+msgid "Open Database"
+msgstr ""
+
+#: astrology/current/astrology:2796
+msgid "Quick Open Database"
+msgstr ""
+
+#: astrology/current/astrology:2797
+msgid "Open Famous People Database"
+msgstr ""
+
+#: astrology/current/astrology:2798
+msgid "Settings"
+msgstr ""
+
+#: astrology/current/astrology:2799
+msgid "Chart Type"
+msgstr ""
+
+#: astrology/current/astrology:2800
+msgid "Zoom"
+msgstr ""
+
+#: astrology/current/astrology:2801
+msgid "Planets & Angles"
+msgstr ""
+
+#: astrology/current/astrology:2802
+msgid "Aspects"
+msgstr ""
+
+#: astrology/current/astrology:2803
+msgid "Colors"
+msgstr ""
+
+#: astrology/current/astrology:2804
+msgid "Labels"
+msgstr ""
+
+#: astrology/current/astrology:2805
+msgid "Set Home Location"
+msgstr ""
+
+#: astrology/current/astrology:2806
+msgid "Configuration"
+msgstr ""
+
+#: astrology/current/astrology:2807
+msgid "Radix Chart"
+msgstr ""
+
+#: astrology/current/astrology:2808
+msgid "Transit Chart"
+msgstr ""
+
+#: astrology/current/astrology:2809
+msgid "Select for Synastry"
+msgstr ""
+
+#: astrology/current/astrology:2809
+msgid "Synastry Chart"
+msgstr ""
+
+#: astrology/current/astrology:2810
+msgid "Composite Chart"
+msgstr ""
+
+#: astrology/current/astrology:2810
+msgid "Select for Composite"
+msgstr ""
+
+#: astrology/current/astrology:2811
+msgid "Combine Chart"
+msgstr ""
+
+#: astrology/current/astrology:2811
+msgid "Select for Combine"
+msgstr ""
+
+#: astrology/current/astrology:2812
+msgid "Solar Return"
+msgstr ""
+
+#: astrology/current/astrology:2814
+msgid "Tables"
+msgstr ""
+
+#: astrology/current/astrology:2815
+msgid "Monthly Timeline"
+msgstr ""
+
+#: astrology/current/astrology:2816
+msgid "Cusp Aspects"
+msgstr ""
+
+#: astrology/current/astrology:2817
+msgid "Extra"
+msgstr ""
+
+#: astrology/current/astrology:2818
+msgid "Export Database"
+msgstr ""
+
+#: astrology/current/astrology:2819
+msgid "Import Database"
+msgstr ""
+
+#: astrology/current/astrology:2820
+msgid "About"
+msgstr ""
+
+#: astrology/current/astrology:2821
+msgid "Info"
+msgstr ""
+
+#: astrology/current/astrology:2822
+msgid "Support"
+msgstr ""
+
+#: astrology/current/astrology:2872 astrology/current/astrology:2889
+msgid "Astrology Databases (*.sql)"
+msgstr ""
+
+#: astrology/current/astrology:2885
+msgid "Please select database to import"
+msgstr ""
+
+#: astrology/current/astrology:2980
+msgid "PNG Image Files (*.png)"
+msgstr ""
+
+#: astrology/current/astrology:2985
+msgid "JPG Image Files (*.jpg)"
+msgstr ""
+
+#: astrology/current/astrology:2991
+msgid "SVG Image Files (*.svg)"
+msgstr ""
+
+#: astrology/current/astrology:2996 astrology/current/astrology:3031
+msgid "Astrology Charts (*.yac)"
+msgstr ""
+
+#: astrology/current/astrology:3002
+msgid "All files (*)"
+msgstr ""
+
+#: astrology/current/astrology:3025
+msgid "Select file to open"
+msgstr ""
+
+#: astrology/current/astrology:3035
+msgid "Oroboros Charts (*.xml)"
+msgstr ""
+
+#: astrology/current/astrology:3039
+msgid "Skylendar Charts (*.skif)"
+msgstr ""
+
+#: astrology/current/astrology:3042
+msgid "Astrolog32 Charts (*.dat)"
+msgstr ""
+
+#: astrology/current/astrology:3045
+msgid "Zet8 Databases (*.zbs)"
+msgstr ""
+
+#: astrology/current/astrology:3106 astrology/current/astrology:3119
+msgid "Select year for Solar Return"
+msgstr ""
+
+#: astrology/current/astrology:3154
+msgid "Enter Date"
+msgstr ""
+
+#: astrology/current/astrology:3167
+msgid "Select date for Secondary Progression"
+msgstr ""
+
+#: astrology/current/astrology:3171 astrology/current/astrology:3237
+#: astrology/current/astrology:5736
+msgid "Year"
+msgstr ""
+
+#: astrology/current/astrology:3176 astrology/current/astrology:3242
+#: astrology/current/astrology:5745
+msgid "Month"
+msgstr ""
+
+#: astrology/current/astrology:3181
+msgid "Day"
+msgstr ""
+
+#: astrology/current/astrology:3189 astrology/current/astrology:5772
+msgid "Hour"
+msgstr ""
+
+#: astrology/current/astrology:3194 astrology/current/astrology:5781
+msgid "Min"
+msgstr ""
+
+#: astrology/current/astrology:3227
+msgid "Select Month"
+msgstr ""
+
+#: astrology/current/astrology:3269
+msgid "Select Export Filename"
+msgstr ""
+
+#: astrology/current/astrology:3275
+msgid "PDF Files (*.pdf)"
+msgstr ""
+
+#: astrology/current/astrology:3533 astrology/current/astrology:3709
+msgid "Save as PDF"
+msgstr ""
+
+#: astrology/current/astrology:3728
+msgid "Author"
+msgstr ""
+
+#: astrology/current/astrology:3728
+msgid "Astrology - Astrology"
+msgstr ""
+
+#: astrology/current/astrology:3728
+msgid "Version"
+msgstr ""
+
+#: astrology/current/astrology:3761
+msgid "Open Database Entry"
+msgstr ""
+
+#: astrology/current/astrology:3772 astrology/current/astrology:3880
+#: astrology/current/astrology:5613
+msgid "Name"
+msgstr ""
+
+#: astrology/current/astrology:3773 astrology/current/astrology:3881
+msgid "Birth Date (Local)"
+msgstr ""
+
+#: astrology/current/astrology:3774 astrology/current/astrology:3882
+#: astrology/current/astrology:4540 astrology/current/astrology:5492
+#: astrology/current/astrology:5631 astrology/current/astrology:5993
+#: astrology/current/astrology:5998
+msgid "Location"
+msgstr ""
+
+#: astrology/current/astrology:3833
+msgid "Search Name"
+msgstr ""
+
+#: astrology/current/astrology:3837 astrology/current/astrology:5724
+msgid "Search"
+msgstr ""
+
+#: astrology/current/astrology:3840
+msgid "Reset"
+msgstr ""
+
+#: astrology/current/astrology:3868
+msgid "Select Database Entry"
+msgstr ""
+
+#: astrology/current/astrology:4044 astrology/current/astrology:4107
+#: astrology/current/astrology:6014
+msgid "Question"
+msgstr ""
+
+#: astrology/current/astrology:4047
+msgid "Are you sure you want to delete"
+msgstr ""
+
+#: astrology/current/astrology:4099 astrology/current/astrology:6006
+msgid "Duplicate"
+msgstr ""
+
+#: astrology/current/astrology:4103 astrology/current/astrology:6010
+msgid "There is allready an entry for this name, please choose another"
+msgstr ""
+
+#: astrology/current/astrology:4111
+msgid "Are you sure you want to Save?"
+msgstr ""
+
+#: astrology/current/astrology:4262
+msgid "General Configuration"
+msgstr ""
+
+#: astrology/current/astrology:4280
+msgid "Use Online Geocoding (ws.geonames.org)"
+msgstr ""
+
+#: astrology/current/astrology:4288
+msgid "Houses System"
+msgstr ""
+
+#: astrology/current/astrology:4316
+msgid "Position Calculation"
+msgstr ""
+
+#: astrology/current/astrology:4320
+msgid "(default)"
+msgstr ""
+
+#: astrology/current/astrology:4335
+msgid "Chart View"
+msgstr ""
+
+#: astrology/current/astrology:4338
+msgid "Planets in Zodiac"
+msgstr ""
+
+#: astrology/current/astrology:4339
+msgid "Planets around Zodiac"
+msgstr ""
+
+#: astrology/current/astrology:4352
+msgid "Zodiac Type"
+msgstr ""
+
+#: astrology/current/astrology:4377
+msgid "Sidereal Mode"
+msgstr ""
+
+#: astrology/current/astrology:4430
+msgid "Language"
+msgstr ""
+
+#: astrology/current/astrology:4433 astrology/current/astrology:5032
+#: astrology/current/astrology:5058 astrology/current/astrology:5084
+#: astrology/current/astrology:5103 astrology/current/astrology:5121
+#: astrology/current/astrology:5139 astrology/current/astrology:5165
+#: astrology/current/astrology:5192 astrology/current/astrology:5218
+#: astrology/current/astrology:5334
+msgid "Default"
+msgstr ""
+
+#: astrology/current/astrology:4528
+msgid "Please Set Your Home Location"
+msgstr ""
+
+#: astrology/current/astrology:4556 astrology/current/astrology:5639
+msgid "City"
+msgstr ""
+
+#: astrology/current/astrology:4562 astrology/current/astrology:5647
+msgid "Country-code"
+msgstr ""
+
+#: astrology/current/astrology:4639 astrology/current/astrology:5819
+msgid "Test"
+msgstr ""
+
+#: astrology/current/astrology:4746
+msgid "Aspect Settings"
+msgstr ""
+
+#: astrology/current/astrology:4759
+msgid "Deg"
+msgstr ""
+
+#: astrology/current/astrology:4761
+msgid "Aspect Name"
+msgstr ""
+
+#: astrology/current/astrology:4763
+msgid ""
+"Visible\n"
+"in Circle"
+msgstr ""
+
+#: astrology/current/astrology:4765
+msgid ""
+"Visible\n"
+"in Grid"
+msgstr ""
+
+#: astrology/current/astrology:4767
+msgid "Orb"
+msgstr ""
+
+#: astrology/current/astrology:4867
+msgid "Planets & Angles Settings"
+msgstr ""
+
+#: astrology/current/astrology:4881
+msgid "Planet Label"
+msgstr ""
+
+#: astrology/current/astrology:4883 astrology/current/astrology:4907
+msgid "Symbol"
+msgstr ""
+
+#: astrology/current/astrology:4885 astrology/current/astrology:4909
+msgid "Aspect Line"
+msgstr ""
+
+#: astrology/current/astrology:4887 astrology/current/astrology:4911
+msgid "Aspect Grid"
+msgstr ""
+
+#: astrology/current/astrology:4903
+msgid "Point Label"
+msgstr ""
+
+#: astrology/current/astrology:4905
+msgid "Angle Label"
+msgstr ""
+
+#: astrology/current/astrology:5001
+msgid "Color Settings"
+msgstr ""
+
+#: astrology/current/astrology:5019
+msgid "Basic Chart Colors"
+msgstr ""
+
+#: astrology/current/astrology:5043
+msgid "Zodiac Background Colors"
+msgstr ""
+
+#: astrology/current/astrology:5070
+msgid "Circles and Lines Colors"
+msgstr ""
+
+#: astrology/current/astrology:5077
+msgid "Radix Ring"
+msgstr ""
+
+#: astrology/current/astrology:5096
+msgid "Transit Ring"
+msgstr ""
+
+#: astrology/current/astrology:5114
+msgid "Cusp Radix"
+msgstr ""
+
+#: astrology/current/astrology:5132
+msgid "Cusp Transit"
+msgstr ""
+
+#: astrology/current/astrology:5151
+msgid "Zodiac Icon Colors"
+msgstr ""
+
+#: astrology/current/astrology:5177
+msgid "Aspects Colors"
+msgstr ""
+
+#: astrology/current/astrology:5204
+msgid "Planet Colors"
+msgstr ""
+
+#: astrology/current/astrology:5252
+msgid "Please select a color"
+msgstr ""
+
+#: astrology/current/astrology:5303
+msgid "Label Settings"
+msgstr ""
+
+#: astrology/current/astrology:5317
+msgid "Label"
+msgstr ""
+
+#: astrology/current/astrology:5319
+msgid "Value"
+msgstr ""
+
+#: astrology/current/astrology:5444
+msgid "City not found! Try Again."
+msgstr ""
+
+#: astrology/current/astrology:5518
+msgid "Quit"
+msgstr ""
+
+#: astrology/current/astrology:5595
+msgid "Edit Event Details"
+msgstr ""
+
+#: astrology/current/astrology:5718
+msgid "Search City"
+msgstr ""
+
+#: astrology/current/astrology:5728
+msgid "For example: London, GB"
+msgstr ""
+
+#: astrology/current/astrology:5810
+msgid "Save"
+msgstr ""
+
+#: astrology/current/astrology:5814
+msgid "Add to Database"
+msgstr ""
+
+#: astrology/current/astrology:6018
+msgid "Are you sure you want to save this entry to the database?"
+msgstr ""

@@ -1,0 +1,44 @@
+name: Documentation
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  docs:
+    name: Build Sphinx docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            python3-dev python3-gi python3-gi-cairo \
+            gir1.2-gtk-4.0 gir1.2-rsvg-2.0
+
+      - name: Install project and doc tools
+        run: |
+          ./install.sh
+          . .venv/bin/activate
+          pip install -r requirements-dev.txt
+
+      - name: Verify documentation screenshots
+        run: bash scripts/verify-screenshots.sh
+
+      - name: Build HTML documentation
+        run: bash scripts/build-docs.sh
+
+      - name: Upload docs artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: astrology-docs
+          path: docs/_build/html

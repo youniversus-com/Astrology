@@ -1,0 +1,65 @@
+# Root pyproject: dev-tool configuration (ruff, pyright, mypy).
+# Installable package metadata lives in src/pyproject.toml.
+
+[project]
+name = "youniversus-astrology"
+version = "1.1.60"
+description = "YoUniverse Astrology — desktop chart application (GTK 4)"
+requires-python = ">=3.12"
+license = { text = "GPL-3.0-or-later" }
+readme = "README.md"
+authors = [{ name = "YoUniverse Astrology contributors" }]
+keywords = ["astrology", "natal-chart", "swiss-ephemeris", "gtk4"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Astronomy",
+]
+
+[project.urls]
+Homepage = "https://github.com/YOUR_ORG/astrology"
+Repository = "https://github.com/YOUR_ORG/astrology"
+Issues = "https://github.com/YOUR_ORG/astrology/issues"
+Changelog = "https://github.com/YOUR_ORG/astrology/blob/main/CHANGELOG.md"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E9", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["I001"]
+"scripts/**" = ["I001"]
+
+[tool.pyright]
+include = ["src", "tests", "scripts"]
+exclude = ["**/__pycache__", "src/build", ".venv", ".venv-pyright", "docs/_build"]
+extraPaths = ["src", "tests"]
+stubPath = "typings"
+pythonVersion = "3.12"
+venvPath = "."
+venv = ".venv"
+
+[[tool.pyright.executionEnvironments]]
+root = "src"
+
+[[tool.pyright.executionEnvironments]]
+root = "tests"
+
+[tool.mypy]
+python_version = "3.12"
+mypy_path = "typings:src:tests"
+explicit_package_bases = true
+namespace_packages = true
+warn_unused_ignores = true
+exclude = ["build", ".venv", "src/build", "docs/_build"]
+
+[[tool.mypy.overrides]]
+module = ["gi.*", "gi.repository.*"]
+ignore_missing_imports = true

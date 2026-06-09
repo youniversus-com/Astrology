@@ -1,0 +1,11 @@
+# Additional epochs for wider date range (-600–3000 CE).
+# Appended to the astrology set by update_ephemeris_de441.sh --profile extended
+sepl_00.se1
+semo_00.se1
+seas_00.se1
+sepl_06.se1
+semo_06.se1
+seas_06.se1
+sepl_24.se1
+semo_24.se1
+seas_24.se1

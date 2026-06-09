@@ -1,0 +1,9 @@
+Geonames.org data export terms
+
+The file src/data/geonames.sql is derived from geonames.org database
+content. Redistribution is subject to the geonames.org terms of use:
+
+https://www.geonames.org/export/
+
+When distributing this software, retain this notice and comply with geonames.org
+attribution requirements.

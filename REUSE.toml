@@ -1,0 +1,69 @@
+version = 1
+SPDX-Header-Filename = "LICENSES/GPL-3.0-or-later.txt"
+SPDX-Header-File = true
+
+[[annotations]]
+path = [
+    ".gitattributes",
+    ".editorconfig",
+    ".github/**",
+    ".readthedocs.yaml",
+    ".vscode/settings.json",
+    "REUSE.toml",
+    "LICENSE",
+    "LICENSES/**",
+    "AUTHORS.md",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "PUBLISHING.md",
+    "SECURITY.md",
+    "THIRD_PARTY_NOTICES.md",
+    "ARCHITECTURE.md",
+    "README.md",
+    "pyproject.toml",
+    "pytest.ini",
+    "requirements*.txt",
+    "install.sh",
+    "packaging/**",
+    "typings/**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 YoUniverse Astrology contributors"
+SPDX-License-Identifier = "GPL-3.0-or-later"
+
+[[annotations]]
+path = [
+    "src/**/*.py",
+    "src/setup.py",
+    "src/astrology",
+    "scripts/**",
+    "tests/**",
+    "docs/conf.py",
+    "docs/**/*.rst",
+    "Makefile",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 YoUniverse Astrology contributors"
+SPDX-License-Identifier = "GPL-3.0-or-later"
+
+[[annotations]]
+path = "src/data/geonames.sql"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "geonames.org contributors"
+SPDX-License-Identifier = "LicenseRef-Geonames"
+
+[[annotations]]
+path = "src/data/famous.sql"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 YoUniverse Astrology contributors"
+SPDX-License-Identifier = "GPL-3.0-or-later"
+
+[[annotations]]
+path = [
+    "src/swisseph/**",
+    "swisseph/**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Astrodienst AG"
+SPDX-License-Identifier = "GPL-3.0-or-later"
