@@ -39,12 +39,34 @@ Build:
 
 Output: ``dist/packages/astrology-<version>-*.rpm``
 
-CI artifacts
-------------
+GitHub Actions release flow
+---------------------------
 
-GitHub Actions builds Linux, macOS, and Windows packages on version tags (``v*``).
-The ``packages.yml`` workflow creates the GitHub Release and uploads all built
-artifacts to the release page automatically.
+Publishing is driven by signed version tags. Pushing ``v*`` starts:
+
+1. ``verify-release.yml``: imports ``.github/gpg/release-signing.asc`` and
+   requires an annotated OpenPGP-signed tag.
+2. ``packages.yml``: creates the GitHub Release, builds every package target,
+   downloads the build artifacts, uploads release assets, and verifies that
+   assets were attached.
+
+``packages.yml`` also supports ``workflow_dispatch`` for package-build smoke
+tests. Manual dispatch stores Actions artifacts but does not create a GitHub
+Release or upload release assets.
+
+Release notes are extracted from the ``CHANGELOG.md`` section matching
+``src/VERSION``. If the section is absent, the workflow publishes a minimal
+``Release <version>`` note.
+
+Expected release assets:
+
+- ``astrology_<version>*_all.deb``
+- ``astrology-<version>-*.rpm``
+- ``Astrology-<version>-macos.app.tar.gz``
+- ``Astrology-<version>-windows-ucrt64.zip``
+
+For the operator checklist and troubleshooting steps, see ``PUBLISHING.md`` in
+the repository root.
 
 Windows and macOS
 -----------------
