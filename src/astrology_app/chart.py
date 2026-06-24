@@ -1211,11 +1211,15 @@ class AstrologyInstance:
 
 	def makePatterns( self ):
 		"""
-		* Stellium: At least four planets linked together in a series of continuous conjunctions.
-    	* Grand trine: Three trine aspects together.
-		* Grand cross: Two pairs of opposing planets squared to each other.
-		* T-Square: Two planets in opposition squared to a third. 
-		* Yod: Two qunicunxes together joined by a sextile. 
+		Find major aspect patterns for the current chart.
+
+		Patterns detected:
+
+		* Stellium: at least four planets linked by continuous conjunctions.
+		* Grand trine: three trine aspects together.
+		* Grand cross: two pairs of opposing planets squared to each other.
+		* T-Square: two planets in opposition squared to a third.
+		* Yod: two quincunxes joined by a sextile.
 		"""
 		conj = {} #0
 		opp = {} #10
