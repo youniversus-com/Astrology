@@ -20,6 +20,8 @@ Daily commands
      - Description
    * - ``make run``
      - Reinstall app and launch ``astrology``
+   * - ``make api``
+     - Install API extras and launch the optional FastAPI backend
    * - ``make dev-check``
      - Lint + unit tests (fast gate)
    * - ``make test-ci``
@@ -66,7 +68,8 @@ Markers are defined in ``pytest.ini``:
 Documentation strings
 ---------------------
 
-Public modules under ``astrology_app`` and ``astrologymod`` should include:
+Public modules under ``astrology_app``, ``astrologymod``, and ``astrology_api``
+should include:
 
 1. A **module docstring** describing purpose.
 2. **Google-style docstrings** on public classes and functions.
