@@ -1,6 +1,6 @@
 # Architecture
 
-YoUniverse Astrology is a **GTK 4 desktop application** written in Python 3.12+. It computes charts with the **Swiss Ephemeris** (`pysweph`) and renders wheels as **SVG** inside a GTK window.
+YoUniverse Astrology is a **GTK 4 desktop application** with an optional **FastAPI HTTP backend**, written in Python 3.12+. It computes charts with the **Swiss Ephemeris** (`pysweph`) and renders wheels as **SVG** inside a GTK window or API response.
 
 > Mermaid diagrams render on GitHub. For prose guides see [docs/architecture.rst](docs/architecture.rst) and the [Sphinx docs](docs/index.rst).
 
@@ -11,6 +11,7 @@ flowchart TB
     subgraph Entry["Entry"]
         CLI["astrology script"]
         APP["AstrologyApplication"]
+        API["astrology-api script"]
     end
 
     subgraph AppPkg["astrology_app"]
@@ -31,6 +32,14 @@ flowchart TB
         BRAND["branding.py"]
     end
 
+    subgraph ApiPkg["astrology_api"]
+        FASTAPI["main.py — FastAPI app"]
+        ROUTERS["routers/ — charts, settings, geonames"]
+        SERVICES["services/ — SVG, ephemeris, database"]
+        SCHEMAS["schemas.py — Pydantic models"]
+        BOOT["bootstrap.py — serialized app state"]
+    end
+
     subgraph Data["Bundled / user data"]
         SE["share/swisseph/*.se1"]
         SQL["geonames.sql / famous.sql"]
@@ -38,10 +47,20 @@ flowchart TB
     end
 
     CLI --> APP
+    API --> FASTAPI
     APP --> CFG
     APP --> DB
     APP --> CHART
     APP --> MW
+    FASTAPI --> ROUTERS
+    ROUTERS --> SERVICES
+    ROUTERS --> SCHEMAS
+    SERVICES --> BOOT
+    BOOT --> CFG
+    BOOT --> DB
+    BOOT --> CHART
+    SERVICES --> SWISS
+    SERVICES --> VEDIC
     MW --> CHART
     MW --> DB
     CHART --> SWISS

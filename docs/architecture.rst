@@ -4,7 +4,8 @@ Architecture
 Overview
 --------
 
-YoUniverse Astrology is a GTK 4 desktop application with two Python packages:
+YoUniverse Astrology is a GTK 4 desktop application with an optional FastAPI
+backend. Runtime code is split across three Python packages:
 
 ``astrology_app``
   Application shell, chart state, SQLite databases, SVG generation, and the main window.
@@ -13,13 +14,20 @@ YoUniverse Astrology is a GTK 4 desktop application with two Python packages:
   Shared libraries: Swiss Ephemeris wrapper, timezone helpers, geonames lookup,
   chart file import, essential dignities, and GTK compatibility shims.
 
+``astrology_api``
+  Optional HTTP backend that exposes chart computation, settings, saved charts,
+  and offline geonames search to trusted local clients.
+
 Data flow
 ---------
 
-1. **User input** (date, time, place) enters :class:`astrology_app.chart.AstrologyInstance`.
+1. **User input** (date, time, place) enters :class:`astrology_app.chart.AstrologyInstance`
+   from the GTK window or arrives as Pydantic models in ``astrology_api.schemas``.
 2. **Ephemeris** positions are computed by :class:`astrologymod.swiss.ephData` via ``pysweph``.
-3. **Aspects** and chart metadata are derived in ``chart.py``.
-4. **SVG** wheel/table files are rendered from XML templates and displayed in GTK.
+3. **Aspects** and chart metadata are derived in ``chart.py`` or converted to
+   JSON by ``astrology_api.services.ephemeris_service``.
+4. **SVG** wheel/table files are rendered from XML templates and displayed in GTK
+   or returned by the HTTP API.
 
 Configuration
 -------------
