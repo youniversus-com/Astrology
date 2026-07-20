@@ -25,3 +25,7 @@ We aim to acknowledge reports within 7 days and provide a fix or mitigation plan
 ## Scope
 
 In scope: this application, bundled scripts, and packaging. Out of scope: third-party services (geonames.org API), upstream Swiss Ephemeris, and GTK/PyGObject themselves—though we will track relevant upstream advisories.
+
+## Debug output
+
+Debug logging is opt-in (`--debug` or a local `DEBUG = True` build) and routes through `astrology_app.debug.dprint()`, which redacts home paths, common runtime paths, coordinates, timezones, datetimes, and known place/person-name message shapes before writing to stderr. Treat debug logs as potentially sensitive in reports anyway, and see `docs/development.rst` for the maintained redaction contract and test expectations.
