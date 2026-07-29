@@ -10,6 +10,56 @@ Environment setup
    source .venv/bin/activate
    pip install -r requirements-dev.txt
 
+Dependency files and checks
+---------------------------
+
+The project keeps Python dependency sets small and layered so desktop, API,
+test, documentation, and package-build workflows can be updated independently.
+GTK 4, PyGObject, and librsvg are intentionally installed by the operating
+system; ``./install.sh`` creates ``.venv`` with ``--system-site-packages`` so
+those bindings remain importable from the virtual environment.
+
+.. list-table::
+   :header-rows: 1
+
+   * - File
+     - Used by
+     - Purpose
+   * - ``requirements.txt``
+     - ``./install.sh``, platform CI setup
+     - Base Python packages for the desktop install. This file is intentionally
+       minimal because GTK and PyGObject come from system packages.
+   * - ``requirements-api.txt``
+     - ``make api``, ``scripts/run-api.sh``, non-Windows test setup
+     - Optional FastAPI backend runtime stack. ``make api`` installs it, then
+       reinstalls ``./src`` before starting ``python -m astrology_api``.
+   * - ``requirements-test.txt``
+     - ``scripts/install-test-deps.sh``, unit and GUI test runners
+     - Pytest, property-test, timeout, and benchmark dependencies.
+   * - ``requirements-dev.txt``
+     - ``make lint``, ``make dev-check``, ``make test-ci``, ``make docs``
+     - Developer toolchain: test and API deps plus Ruff, Pyright, mypy, and
+       Sphinx.
+   * - ``requirements-packaging.txt``
+     - Windows/macOS PyInstaller bundle work on the target OS
+     - Optional native desktop bundle tooling; Linux packaging uses distro
+       build tools instead.
+
+When changing dependency bounds, update the file consumed by the relevant
+script and check related package metadata under ``src/pyproject.toml``. The
+install and test scripts are the source of truth for local and CI workflows.
+
+Common pitfalls:
+
+- ``make docs`` and ``make api`` require an existing ``.venv``; run
+  ``./install.sh`` first.
+- If ``gi`` or ``Gtk`` imports fail after installing system packages, deactivate
+  any active virtual environment and rerun ``./install.sh`` so
+  ``include-system-site-packages`` is enabled.
+- On MSYS2 UCRT64, ``scripts/install-test-deps.sh`` skips pip installation of
+  the API stack because packages such as Pydantic and FastAPI are supplied by
+  pacman in CI.
+
 Daily commands
 --------------
 
