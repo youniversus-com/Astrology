@@ -85,6 +85,66 @@ Daily commands
    * - ``make package-deb``
      - Build Debian package
 
+Continuous integration
+----------------------
+
+GitHub Actions is split by responsibility so routine pull requests, docs
+updates, security analysis, and release tags can fail independently.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Workflow
+     - Triggers
+     - What it proves
+   * - ``.github/workflows/tests.yml``
+     - Pushes and pull requests targeting ``main`` or ``master``, ``v*`` tags,
+       and manual dispatch
+     - Lints ``tests`` and ``scripts`` with Ruff, then runs the Linux full test
+       suite plus macOS and Windows unit/release smoke checks.
+   * - ``.github/workflows/docs.yml``
+     - Pushes and pull requests targeting ``main`` or ``master``, and manual
+       dispatch
+     - Installs the app and doc tools, verifies committed screenshot assets,
+       builds Sphinx HTML, and uploads the HTML artifact.
+   * - ``.github/workflows/codeql.yml``
+     - Pushes and pull requests targeting ``main`` or ``master`` plus the
+       weekly Monday schedule
+     - Runs Python CodeQL with read-only repository permissions and
+       ``security-events: write`` for alerts.
+   * - ``.github/workflows/verify-release.yml``
+     - ``v*`` tags
+     - Imports ``.github/gpg/release-signing.asc`` and rejects lightweight,
+       unsigned, unknown-key, or bad-signature release tags.
+   * - ``.github/workflows/packages.yml``
+     - ``v*`` tags and manual dispatch
+     - Builds Debian, RPM, macOS, and Windows packages. Tag pushes also create
+       or reuse the GitHub Release, upload package assets, and check that the
+       release has at least as many assets as the build produced.
+
+Local parity commands:
+
+.. code-block:: bash
+
+   ./install.sh
+   make dev-check       # Ruff plus unit tests; closest fast PR gate
+   make test-ci         # Linux full suite: unit, GUI/golden, release smoke
+   make test-screenshots
+   make docs
+
+Useful troubleshooting constraints:
+
+- GTK 4, PyGObject, and librsvg come from system packages. Recreate ``.venv``
+  with ``./install.sh`` after installing them so ``--system-site-packages`` is
+  set correctly.
+- Linux GUI and screenshot checks need Xvfb; ``scripts/run_gui_tests.sh`` will
+  stop with ``Install Xvfb: sudo apt install xvfb`` when it is missing.
+- macOS and Windows workflow jobs are smoke checks, not full GUI parity. They
+  configure platform-specific GTK lookup paths before running unit and release
+  smoke tests.
+- Manual ``packages.yml`` runs are package-build smoke tests only. Release
+  creation and asset upload happen only for pushed ``v*`` tags.
+
 Documentation screenshots
 -------------------------
 
