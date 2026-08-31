@@ -85,6 +85,68 @@ Daily commands
    * - ``make package-deb``
      - Build Debian package
 
+Continuous integration
+----------------------
+
+GitHub Actions uses the same scripts as local development where practical.
+When a hosted check fails, start with the matching local command below, then
+compare any platform-specific setup in the workflow file.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Workflow
+     - Trigger
+     - What it checks
+     - Local parity
+   * - ``.github/workflows/tests.yml``
+     - Pushes and pull requests for ``main``/``master``, ``v*`` tags, and
+       manual dispatch
+     - Ruff over ``tests/`` and ``scripts/``; Linux runs the full unit, GUI,
+       golden, and release suite; macOS and Windows run unit plus release
+       smoke checks after installing native GTK/PyGObject dependencies.
+     - ``make dev-check`` for the fast gate, or ``make test-ci`` for the
+       Linux full suite.
+   * - ``.github/workflows/docs.yml``
+     - Pushes and pull requests for ``main``/``master``, and manual dispatch
+     - Installs GTK/PyGObject and doc tooling, verifies committed screenshots,
+       builds Sphinx HTML, and uploads the ``astrology-docs`` artifact.
+     - ``make test-screenshots`` followed by ``make docs``.
+   * - ``.github/workflows/codeql.yml``
+     - Pushes and pull requests for ``main``/``master`` plus a weekly Monday
+       schedule
+     - Initializes and analyzes the Python codebase with CodeQL using
+       read-only repository permissions plus ``security-events: write``.
+     - No exact local equivalent; keep generated files out of analysis and
+       prefer small, reviewable security-model changes.
+   * - ``.github/workflows/verify-release.yml``
+     - ``v*`` tags
+     - Fetches full tag history, imports ``.github/gpg/release-signing.asc``,
+       and requires the release tag to be a signed annotated tag.
+     - See :doc:`signing`; verify locally with ``git tag -v vX.Y.Z``.
+   * - ``.github/workflows/packages.yml``
+     - Manual dispatch and ``v*`` tags
+     - Builds Debian, RPM, macOS, and Windows artifacts. On tag pushes it also
+       creates the GitHub Release when missing and uploads package assets.
+     - ``make package-deb``, ``make package-rpm``, ``make package-macos``,
+       or ``make package-windows`` on the matching operating system.
+
+Common CI pitfalls:
+
+- Linux GUI and screenshot jobs need GTK 4, PyGObject, librsvg, ImageMagick,
+  and Xvfb. If a local GUI check fails before tests run, install those system
+  packages and rerun ``./install.sh`` so the virtual environment can see
+  system site packages.
+- ``make docs`` and ``make test-screenshots`` both require an existing
+  ``.venv``. The docs workflow creates it with ``./install.sh`` before running
+  ``scripts/build-docs.sh``.
+- Windows tests run under MSYS2 UCRT64. ``scripts/install-test-deps.sh`` skips
+  pip installation of the optional API stack there because FastAPI and related
+  packages are installed by pacman in the workflow.
+- Tag releases are split across ``verify-release.yml`` and ``packages.yml``:
+  a ``v*`` tag must be signed and annotated before package artifacts are
+  published. Follow ``PUBLISHING.md`` for the complete release checklist.
+
 Documentation screenshots
 -------------------------
 
