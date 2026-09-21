@@ -147,6 +147,44 @@ Vedic SVG without western GTK rendering:
        }
      }'
 
+Maintaining API dependencies
+----------------------------
+
+The FastAPI runtime stack is optional and intentionally isolated from the GTK
+desktop install. ``requirements-api.txt`` is the dependency file used by
+``scripts/run-api.sh`` and, on non-MSYS2 platforms, by
+``scripts/install-test-deps.sh``. The installable package also advertises an
+``api`` extra in ``src/pyproject.toml``; review that metadata when raising
+backend dependency bounds for published packages.
+
+When updating FastAPI, Pydantic, or Uvicorn:
+
+1. Check request and response contracts in ``astrology_api.schemas``. Pydantic
+   validation currently enforces decimal UTC hours in ``[0, 24)``, coordinate
+   ranges, chart image dimensions between 200 and 4000 pixels, non-empty
+   geonames search queries, and geonames limits from 1 to 100.
+2. Run the API-focused unit tests after installing the desktop app and test
+   dependencies:
+
+   .. code-block:: bash
+
+      ./install.sh
+      source .venv/bin/activate
+      bash scripts/install-test-deps.sh
+      python -m pytest tests/unit/api -m unit -q
+
+3. Start the development server with ``make api`` and verify ``/api/health`` and
+   ``/docs`` still load. Use ``POST /api/charts/data`` for a headless smoke test
+   and ``POST /api/charts/compute`` to confirm western SVG rendering when GTK is
+   available.
+4. Preserve the threading model in ``astrology_api.bootstrap``. Synchronous
+   FastAPI handlers run in a worker thread pool, while the legacy chart engine
+   uses module globals, so requests must continue to pass through
+   ``api_context()``.
+5. On MSYS2 UCRT64, CI installs FastAPI through pacman instead of pip because
+   some Python wheels are unavailable for the mingw runtime. Keep that platform
+   path in mind when changing minimum versions.
+
 Common failures
 ---------------
 
