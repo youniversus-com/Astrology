@@ -35,6 +35,35 @@ Configuration
 Runtime settings and chart databases live in the user config directory
 (``astrologymod.paths.user_data_dir``), backed by SQLite.
 
+Western aspect rendering
+------------------------
+
+Western chart aspects are rendered as part of
+``astrology_app.chart.AstrologyInstance.makeSVG()``. The renderer reads aspect
+definitions from ``settings_aspect`` and planet visibility flags from
+``settings_planet`` through ``astrology_app.db``:
+
+- ``visible`` controls whether an aspect line is drawn inside the wheel.
+- ``visible_grid`` controls whether the aspect symbol appears in the grid.
+- ``orb`` is applied symmetrically around the configured aspect degree for radix
+  charts.
+- ``visible_aspect_line`` and ``visible_aspect_grid`` on each planet decide
+  whether that body participates in lines and grid cells.
+
+``makeAspects()`` draws radix aspect lines, and ``makeAspectGrid()`` writes the
+radix grid into ``src/astrology-svg.xml``. Transit charts use
+``makeAspectsTransit()`` and ``makeAspectTransitGrid()`` instead; their orb
+window is intentionally narrower and depends on whether a personal planet is
+involved. Vedic charts bypass the Western aspect grid and call
+``makeVedicDrishti()`` for graha drishti overlays.
+
+``makePatterns()`` is a legacy hook reserved in the SVG template for major
+Western aspect patterns. It currently scans conjunctions, oppositions, squares,
+trines, quincunxes, and sextiles for stelliums, grand trines, grand crosses,
+T-squares, and yods, but the generated overlay is not emitted because the method
+returns an empty string. Treat pattern display as disabled until that return
+path and the corresponding golden SVG baseline are updated.
+
 Bundled assets
 --------------
 
