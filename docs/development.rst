@@ -85,6 +85,64 @@ Daily commands
    * - ``make package-deb``
      - Build Debian package
 
+Continuous integration
+----------------------
+
+GitHub Actions is the hosted source of truth for pull-request, main-branch,
+documentation, security, and release checks. Keep local commands aligned with
+the scripts used by these workflows so failures can be reproduced before a
+push.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Workflow
+     - Trigger
+     - What it verifies
+     - Local parity
+   * - ``.github/workflows/tests.yml``
+     - Pull requests, pushes to ``main``/``master``, ``v*`` tags, manual runs
+     - Ruff plus Linux full tests and macOS/Windows smoke tests.
+     - ``make dev-check`` for the fast gate or ``make test-ci`` for the full
+       unit, GUI, golden, and release-smoke suite.
+   * - ``.github/workflows/docs.yml``
+     - Pull requests and pushes to ``main``/``master``, manual runs
+     - Screenshot presence and Sphinx HTML generation.
+     - ``make test-screenshots`` then ``make docs``.
+   * - ``.github/workflows/codeql.yml``
+     - Pull requests, pushes to ``main``/``master``, weekly schedule
+     - Python CodeQL analysis and code-scanning upload.
+     - No exact local equivalent; run ``make dev-check`` first, then inspect
+       GitHub code-scanning results for model or query findings.
+   * - ``.github/workflows/verify-release.yml``
+     - ``v*`` tag pushes
+     - Annotated OpenPGP-signed release tags using
+       ``.github/gpg/release-signing.asc``.
+     - ``git tag -v vX.Y.Z`` after importing the release public key.
+   * - ``.github/workflows/packages.yml``
+     - Manual runs and ``v*`` tag pushes
+     - Debian, RPM, macOS, and Windows bundles; tag runs also create/update the
+       GitHub Release and attach package assets.
+     - ``make package-deb`` or ``make package-rpm`` on Linux; run macOS and
+       Windows targets on their native platforms.
+
+Common CI pitfalls:
+
+- Linux GUI and docs jobs need GTK 4, PyGObject, librsvg, ImageMagick, and
+  Xvfb-capable test hosts. Rerun ``./install.sh`` after changing system
+  packages so ``.venv`` keeps ``--system-site-packages`` enabled.
+- ``scripts/install-test-deps.sh`` skips pip installation of the API stack on
+  MSYS2 UCRT64 because CI installs FastAPI-related packages with pacman into
+  system site-packages.
+- ``scripts/build-docs.sh`` expects ``.venv`` to exist. Run ``./install.sh``
+  before ``make docs`` in fresh workspaces.
+- Release tag checks require an annotated signed tag. Lightweight, unsigned,
+  unknown-key, or bad-signature tags fail before package publishing should be
+  trusted.
+- Package builds set ``ASTROLOGY_UPDATE_EPHE=1`` so missing Swiss Ephemeris
+  files are refreshed during release packaging. Local smoke builds can use the
+  same variable when ``src/swisseph/`` is incomplete.
+
 Documentation screenshots
 -------------------------
 
