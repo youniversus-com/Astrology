@@ -29,6 +29,37 @@ Data flow
 4. **SVG** wheel/table files are rendered from XML templates and displayed in GTK
    or returned by the HTTP API.
 
+Chart SVG rendering contract
+----------------------------
+
+``AstrologyMainWindow`` owns the rendered chart viewport. It embeds
+``AstrologyDrawSVG`` in a GTK scrolled window and registers
+``draw.on_viewport_changed`` so resize events flow back into
+``AstrologyInstance.set_chart_viewport(width, height)`` before the next
+``makeSVG()`` call.
+
+``AstrologyInstance.makeSVG()`` is the single writer for the active chart SVG:
+
+- Desktop refreshes write ``g.cfg.tempfilename`` and load it with
+  ``Rsvg.Handle.new_from_file()`` in ``AstrologyDrawSVG.setSVG()``.
+- Print/export refreshes pass a ``printing`` size and write the print variant
+  instead of using the live GTK allocation.
+- Non-printing chart SVG uses the remembered viewport when both dimensions are
+  at least 200 pixels; otherwise it falls back to the screen-size estimate.
+- Vedic North/South Indian layouts bypass the Western XML template and render
+  directly through ``astrologymod.vedic.chart_svg``. The ``wheel`` Vedic layout
+  stays on the Western template and swaps the planet/house grids.
+
+``AstrologyDrawSVG.draw_func()`` does not mutate chart data. It letterboxes the
+current SVG into the GTK allocation with librsvg/Cairo, applies the chart zoom,
+and debounces viewport notifications so resizing does not regenerate SVG on
+every draw frame.
+
+When adjusting glyph placement, keep the OpenAstro-style zodiac transform and
+the ``zodiac-glyphs:openastro-org-s90`` marker in sync with
+``tests/unit/test_zodiac_placement.py``. Broader rendering regressions are
+covered by the GUI SVG smoke tests and the golden SVG digest tests.
+
 Configuration
 -------------
 
