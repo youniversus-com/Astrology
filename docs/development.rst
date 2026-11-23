@@ -115,6 +115,62 @@ Markers are defined in ``pytest.ini``:
    make test-gui
    make test-all
 
+Local input safety checks
+-------------------------
+
+Chart imports, geonames searches, settings dialogs, and export defaults accept
+local user-controlled strings. Keep the checks close to the boundary that first
+normalizes the value, then rely on parameterized database calls or GTK file
+choosers for the final operation.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Code path
+     - Constraint
+     - Focused tests
+   * - ``astrologymod.xml_io.parse_xml_file()``
+     - Reads at most ``MAX_XML_BYTES`` plus one byte before parsing chart XML;
+       oversized files raise ``ValueError`` before ``minidom`` sees the payload.
+     - ``tests/unit/test_xml_io.py`` and
+       ``tests/unit/importfile/test_security.py``
+   * - ``astrologymod.validation.normalize_iso2()``
+     - Accepts exactly two alphabetic country-code characters and returns upper
+       case; invalid values return ``None`` and are omitted from geonames SQL
+       filters.
+     - ``tests/unit/test_validation.py``
+   * - ``validate_color_key()``, ``validate_hex_color()``, and
+       ``validate_label_key()``
+     - Settings writes only use known identifier shapes and six-digit hex
+       colors, while SQL values still travel as parameters.
+     - ``tests/unit/test_validation.py``
+   * - ``astrology_app.export_image.safe_chart_basename()``
+     - Export dialog defaults replace path separators, Windows-reserved
+       filename characters, and control characters with ``_``; empty names fall
+       back to ``chart``.
+     - ``tests/unit/test_export_image.py``
+
+Examples:
+
+.. code-block:: python
+
+   normalize_iso2("nl") == "NL"
+   normalize_iso2("NLD") is None
+   validate_hex_color("#AABBCC")
+   not validate_hex_color("red")
+   safe_chart_basename("John/Doe: test") == "John_Doe_ test"
+
+Common pitfalls:
+
+- XML chart imports still surface parser errors such as ``ExpatError`` and
+  schema-shape errors from the importers; do not convert those to successful
+  partial imports without documenting the compatibility tradeoff.
+- ``safe_chart_basename()`` only prepares a default filename. The selected
+  destination still comes from GTK's save dialog and the export format branch
+  appends or normalizes the extension.
+- Add or update focused unit tests whenever widening a validator. The helpers
+  intentionally reject unrecognized forms instead of silently preserving them.
+
 Documentation strings
 ---------------------
 
